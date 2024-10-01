@@ -121,3 +121,8 @@ class PledgeDetail(APIView):
             serializer.errors,
             status = status.HTTP_404_NOT_FOUND
         )
+    
+    def delete(self, request, pk):
+        pledge = self.get_object(pk)
+        pledge.delete()
+        return Response(status.HTTP_204_NO_CONTENT)
