@@ -11,3 +11,11 @@ class IsSupporterOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         return obj.supporter == request.user
+
+## For supporter who can't be the project owner
+# class IsSupporterOrReadOnlyAndNotOwner(permissions.BasePermission):
+#     def has_object_permission(self, request, view, obj):
+#         if request.method in permissions.SAFE_METHODS:
+#             return True
+#         return (obj.supporter == request.user) and (obj.supporter != obj.project.owner)
+#         # return (True) and (False)
