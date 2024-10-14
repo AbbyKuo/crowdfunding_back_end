@@ -15,6 +15,21 @@ class Project(models.Model):
         related_name='owned_projects'
     )
 
+    def __str__(self):
+        return self.title
+
+    @property
+    def pledge_sum(self):
+        pledges = self.pledges.all()
+        sum = 0
+        for pledge in pledges:
+            sum += pledge.amount
+        return sum
+
+# project = Project.objects.get(pk=1)
+# project.goal (250)
+# project.pledge_sum
+
 class Pledge(models.Model):
     amount = models.IntegerField()
     comment = models.CharField(max_length=200)
@@ -22,10 +37,15 @@ class Pledge(models.Model):
     project = models.ForeignKey(
         'Project',
         on_delete=models.CASCADE,
-        related_name='pledges'  # variable_name, better to make them uniq
+        related_name='pledges'
     )
+    
     supporter = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
         related_name='pledges'
     )
+
+    def __str__(self):
+        return f'{self.amount} books pledged to {self.project.title}'
+    

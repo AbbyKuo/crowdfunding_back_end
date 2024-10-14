@@ -9,6 +9,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from .models import CustomUser
 from .serializers import CustomUserSerializer
+from projects.models import Pledge
+from projects.serializers import PledgeSerializer
 
 class CustomUserList(APIView):
     def get(self, request):
@@ -55,3 +57,19 @@ class CustomAuthToken(ObtainAuthToken):
             'user_id': user.id,
             'email': user.email
         })
+
+class CustomUserPledgeList(APIView):
+    def get_object(self, pk):
+        try:
+            return CustomUser.objects.get(pk=pk)
+        except CustomUser.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        user = self.get_object(pk)
+        user_pledges = user.pledges.all()
+        print('models ', user_pledges)
+        serializer = PledgeSerializer(user_pledges, many=True)
+        print('json ', serializer.data)
+        
+        return Response(serializer.data)

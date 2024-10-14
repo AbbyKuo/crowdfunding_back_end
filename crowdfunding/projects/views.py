@@ -47,6 +47,8 @@ class ProjectDetail(APIView):
     
     def get(self, request, pk):
         project = self.get_object(pk)
+        print(project)
+        print(project.pledge_sum)
         serializer = ProjectDetailSerializer(project)
         return Response(serializer.data)
 
@@ -65,6 +67,11 @@ class ProjectDetail(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
+
+    def delete(self, request, pk):
+        project = self.get_object(pk)
+        project.delete()
+        return Response(status.HTTP_204_NO_CONTENT)   
 
 class PledgeList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

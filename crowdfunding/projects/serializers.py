@@ -3,6 +3,8 @@ from django.apps import apps
 
 class ProjectSerializer(serializers.ModelSerializer):
   owner = serializers.ReadOnlyField(source='owner.id')
+
+  pledge_sum = serializers.ReadOnlyField()
   class Meta:
       model = apps.get_model('projects.Project')
       fields = '__all__'
