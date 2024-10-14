@@ -4,13 +4,14 @@ from django.shortcuts import render
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from .models import CustomUser
 from .serializers import CustomUserSerializer
 from projects.models import Pledge
 from projects.serializers import PledgeSerializer
+from .permissions import IsUserOrAdminOnly
 
 class CustomUserList(APIView):
     def get(self, request):
@@ -32,9 +33,16 @@ class CustomUserList(APIView):
         )
 
 class CustomUserDetail(APIView):
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly,
+        IsUserOrAdminOnly
+        ]
+    
     def get_object(self, pk):
         try:
-            return CustomUser.objects.get(pk=pk)
+            user = CustomUser.objects.get(pk=pk)
+            self.check_object_permissions(self.request, user)
+            return user
         except CustomUser.DoesNotExist:
             raise Http404
 
