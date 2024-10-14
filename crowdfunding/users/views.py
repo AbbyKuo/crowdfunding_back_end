@@ -14,8 +14,17 @@ from projects.serializers import PledgeSerializer
 from .permissions import IsUserOrAdminOnly
 
 class CustomUserList(APIView):
+    def get_permissions(self):
+        # Override this method to apply different permissions for different HTTP methods.
+        if self.request.method == "GET":
+            return [permissions.IsAuthenticated() ,permissions.IsAdminUser()]
+        elif self.request.method == "POST":
+            return [permissions.AllowAny()]
+        return super().get_permissions()
+    
     def get(self, request):
         users = CustomUser.objects.all()
+        self.check_object_permissions(request, users)
         serializer = CustomUserSerializer(users, many=True)
         return Response(serializer.data)
 
