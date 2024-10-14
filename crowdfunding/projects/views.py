@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
-from .permissions import IsOwnerOrReadOnly, IsSupporterOrReadOnlyAndNotOwner
+from .permissions import IsOwnerOrReadOnly, IsSupporterOrReadOnlyAndNotOwner, IsSupporterOrReadOnly
 from django.http import Http404
 from .models import Project, Pledge
 from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer
@@ -77,7 +77,8 @@ class PledgeList(APIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
         IsSupporterOrReadOnlyAndNotOwner
-    ]
+    ]   
+
 
     def get(self, request):
         pledges = Pledge.objects.all()
@@ -100,7 +101,7 @@ class PledgeList(APIView):
 class PledgeDetail(APIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
-        IsSupporterOrReadOnlyAndNotOwner
+        IsSupporterOrReadOnly
     ]
     
     def get_object(self, pk):
