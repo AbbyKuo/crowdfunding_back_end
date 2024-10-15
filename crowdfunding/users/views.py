@@ -59,7 +59,12 @@ class CustomUserDetail(APIView):
         user = self.get_object(pk)
         serializer = CustomUserSerializer(user)
         return Response(serializer.data)
-
+    
+    def delete(self, request, pk):
+        user = self.get_object(pk)
+        user.delete()
+        return Response(status.HTTP_204_NO_CONTENT)
+    
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(
@@ -88,5 +93,4 @@ class CustomUserPledgeList(APIView):
         print('models ', user_pledges)
         serializer = PledgeSerializer(user_pledges, many=True)
         print('json ', serializer.data)
-        
         return Response(serializer.data)
