@@ -14,6 +14,7 @@ class PledgeSerializer(serializers.ModelSerializer):
   class Meta:
       model = apps.get_model('projects.Pledge')
       fields = '__all__'
+      read_only_fields = ["amount", "project"]
 
       def update(self, instance, validate_data):
         instance.amount = validate_data.get('amount', instance.amount)
