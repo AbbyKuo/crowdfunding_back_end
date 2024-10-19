@@ -14,7 +14,15 @@ class ProjectList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request):
+        print(request.GET)
+        
+        order = request.GET.get('order', None)
+        print("order", order)
         projects = Project.objects.all()
+        
+        if order is not None:
+            projects =projects.order_by('-' + order)
+        
         serializer = ProjectSerializer(projects, many=True)
         return Response(serializer.data)
     
