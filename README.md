@@ -55,7 +55,7 @@ It can be helpful to keep the markdown preview open in VS Code so that you can s
 | /projects/ | POST | Create a new project | Project object | 201 | Must be logged in. |
 | /projects/1/ | GET| Return the project with the id of "1". | N/A | 200 | NA|
 | /projects/1/ | PUT | Update the project with the id of "1". | Project object | 200 | Must be logged in. Must be the project owner. |
-| /projects/1/ | DELETE | Delete the project with the id of "1". | N/A | 200 | Must be logged in. Must be the project owner. |
+| /projects/1/ | DELETE | Delete the project with the id of "1". | N/A | 200 | Must be logged in. Must be the project owner or admin user. |
 | /pledges/ | POST | Create a new pledge. | Pledge object | 201 | Must be logged in. Must not be the project owner. |
 | /pledges/1/ | GET | Return the pledge with the id of "1". | N/A | 20O | N/A |
 | /pledges/1/ | UPDATE | Update the pledge with the id of "1". | Pledge object | 20O | Must be logged in. Must be the pledge owner. |
@@ -63,7 +63,7 @@ It can be helpful to keep the markdown preview open in VS Code so that you can s
 | /users/ | GET | Return all users. | N/A | 200 | Must be logged in. Must be admin users. |
 | /users/ | POST | Create a new user. | N/A | 200 | N/A |
 | /users/1/ | GET | Return the user details with the id of "1". | N/A | 200 | Must be logged in.  Must be the account owner or admin users.|
-| /users/1/ | PUT | Update the user details with the id of "1". | N/A | 200 | Must be logged in. Must be the account owner.|
+| /users/1/ | PUT | Update the user details with the id of "1". | N/A | 200 | Must be logged in. Must be the account owner or admin user. |
 | /users/1/ | DELETE | Delete the user details with the id of "1". | N/A | 200 | Must be logged in. Must be the account owner or admin user.|
 | /users/1/pledges/ | GET | Return the user's pledge list with the id of "1". | N/A | 200 | Must be logged in. Must be the supporter of the project. |
 

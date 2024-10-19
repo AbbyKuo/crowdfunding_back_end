@@ -7,5 +7,5 @@ class IsUserOrAdminOnly(permissions.BasePermission):
         if request.method == "DELETE":
             return obj == request.user or obj == request.user.is_staff
         if request.method == "PUT":
-            return obj == request.user 
+            return obj == request.user or obj == request.user.is_staff
         return False 
