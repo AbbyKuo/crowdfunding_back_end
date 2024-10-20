@@ -88,13 +88,22 @@ class PledgeList(APIView):
         IsSupporterOrReadOnlyAndNotOwner
     ]   
 
-
     def get(self, request):
         pledges = Pledge.objects.all()
         serializer = PledgeSerializer(pledges, many=True)
         return Response(serializer.data)
     
     def post(self, request):
+        project_id = request.data.get('project')
+        print('id', project_id)
+        try:
+            project = Project.objects.get(pk=project_id)
+        except Project.DoesNotExist:
+            return Response({'error': 'The project does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        
+        if not project.is_open:
+            return Response({'error': 'This project is not accepting pledges'}, status=status.HTTP_400_BAD_REQUEST)
+            
         serializer = PledgeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(supporter=request.user)

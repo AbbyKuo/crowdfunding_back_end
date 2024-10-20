@@ -14,7 +14,7 @@ Your crowdfunding project must:
   - [x] Description
   - [x] Image
   - [x] Target amount to fundraise
-  - [] Whether it is currently open to accepting new supporters or not
+  - [x] Whether it is currently open to accepting new supporters or not
   - [x] When the project was created
 - [x] Ability to “pledge” to a project. A pledge should include at least the following attributes:
   - [x] An amount
