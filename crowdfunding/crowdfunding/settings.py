@@ -59,7 +59,6 @@ REST_FRAMEWORK = {
   'DEFAULT_AUTHENTICATION_CLASSES': [
       'rest_framework.authentication.TokenAuthentication',
   ],
-#   'EXCEPTION_HANDLER': 'projects.views.projects_custom_exception_handler',
 }
 
 AUTH_USER_MODEL = 'users.CustomUser'

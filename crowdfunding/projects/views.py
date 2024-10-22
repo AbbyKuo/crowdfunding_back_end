@@ -156,15 +156,4 @@ class PledgeDetail(APIView):
         pledge.delete()
         return Response(status.HTTP_204_NO_CONTENT)
 
-def projects_custom_exception_handler(exc, context):
-    # Call DRF's default exception handler first to get the standard error response.
-    print("Custom handler triggered!") 
-    response = exception_handler(exc, context)
-
-    if response is None and isinstance(exc, Http404):
-        return Response(
-            {"detail": "Oops! The project does not exist."},
-            status=status.HTTP_404_NOT_FOUND
-        )
-    return response
 
