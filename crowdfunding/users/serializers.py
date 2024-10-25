@@ -27,11 +27,11 @@ class CustomUserSerializer(serializers.ModelSerializer):
         if user.is_superuser:
             for attribute in validated_data:
                 if attribute not in allowed_superuser_attributes:
-                    raise serializers.ValidationError({'message':'You are not allowed to update this field'})
+                    raise serializers.ValidationError({'message':f'You are not allowed to update this field: {attribute}'})
         else:
             for attribute in validated_data:
                 if attribute not in allowed_user_attributes:
-                    raise serializers.ValidationError({'message':'You are not allowed to update this field'})
+                    raise serializers.ValidationError({'message': f'You are not allowed to update this field: {attribute}'})
                 
         if user.is_superuser:
             instance.is_superuser = validated_data.get('is_superuser', instance.is_superuser)
