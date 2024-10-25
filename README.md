@@ -69,7 +69,7 @@ It can be helpful to keep the markdown preview open in VS Code so that you can s
 
 
 ### DB Schema
-![]( {{ ./relative/path/to/your/schema/image.png }} )
+![](./bookwish_api_table.png)
 ```
 
 An example API spec:  
