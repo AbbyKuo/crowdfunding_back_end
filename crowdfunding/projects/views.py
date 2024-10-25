@@ -24,6 +24,10 @@ class ProjectList(APIView):
         if order is not None:
             projects =projects.order_by('-' + order)
         
+        most_pledges = request.GET.get('most_pledges', None)
+        if most_pledges is not None:
+            projects = sorted(list(projects), key=lambda project: project.pledge_sum, reverse=True)
+        
         serializer = ProjectSerializer(projects, many=True)
         return Response(serializer.data)
     

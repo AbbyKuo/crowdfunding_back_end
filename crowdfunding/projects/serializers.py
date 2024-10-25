@@ -15,6 +15,21 @@ class PledgeSerializer(serializers.ModelSerializer):
       model = apps.get_model('projects.Pledge')
       fields = '__all__'
 
+  def to_representation(self, instance):
+        # instance is a Pledge (printing out type(instance))
+        print('instance', instance, type(instance))
+        # please run all the code from django rest framework that you would have run
+        # if I didn't make my own to_representation method
+        representation = super().to_representation(instance)
+        print('representation', representation)
+        
+        if instance.anonymous:
+            # Remove the supporter field if anonymous is True
+            # representation is the JSON
+            # representation.pop('supporter')
+            del representation['supporter']
+        return representation
+  
 class ProjectDetailSerializer(ProjectSerializer):
     pledges = PledgeSerializer(many=True, read_only=True)
 
