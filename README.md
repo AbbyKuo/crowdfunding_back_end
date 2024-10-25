@@ -69,8 +69,5 @@ It can be helpful to keep the markdown preview open in VS Code so that you can s
 
 
 ### DB Schema
-![](./bookwish_api_table.png)
+![](./erd.drawio.png)
 ```
-
-An example API spec:  
-![](./img/table.png)
