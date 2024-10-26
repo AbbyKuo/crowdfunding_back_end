@@ -69,7 +69,7 @@ It can be helpful to keep the markdown preview open in VS Code so that you can s
 
 
 ### DB Schema
-![DB schema](./imgs/erd.drawio.png)
+![DB schema](./imgs/erd.png)
 
 ### Screenshots
 1. A successful GET method
