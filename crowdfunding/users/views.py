@@ -98,6 +98,10 @@ class CustomAuthToken(ObtainAuthToken):
         })
 
 class CustomUserPledgeList(APIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+        IsUserOrAdminOnly
+        ]
     def get_object(self, pk):
         try:
             return CustomUser.objects.get(pk=pk)
