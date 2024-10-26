@@ -26,10 +26,6 @@ class Project(models.Model):
             sum += pledge.amount
         return sum
 
-# project = Project.objects.get(pk=1)
-# project.goal (250)
-# project.pledge_sum
-
 class Pledge(models.Model):
     amount = models.IntegerField()
     comment = models.CharField(max_length=200)

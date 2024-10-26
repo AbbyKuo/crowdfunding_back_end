@@ -107,7 +107,5 @@ class CustomUserPledgeList(APIView):
     def get(self, request, pk):
         user = self.get_object(pk)
         user_pledges = user.pledges.all()
-        print('models ', user_pledges)
         serializer = PledgeSerializer(user_pledges, many=True)
-        print('json ', serializer.data)
         return Response(serializer.data)

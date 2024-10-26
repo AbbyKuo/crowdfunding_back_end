@@ -15,10 +15,7 @@ class ProjectList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request):
-        print(request.GET)
-        
         order = request.GET.get('order', None)
-        print("order", order)
         projects = Project.objects.all()
         
         if order is not None:
@@ -60,8 +57,6 @@ class ProjectDetail(APIView):
     
     def get(self, request, pk):
         project = self.get_object(pk)
-        print(project)
-        print(project.pledge_sum)
         serializer = ProjectDetailSerializer(project)
         return Response(serializer.data)
 
@@ -99,7 +94,6 @@ class PledgeList(APIView):
     
     def post(self, request):
         project_id = request.data.get('project')
-        print('id', project_id)
         try:
             project = Project.objects.get(pk=project_id)
         except Project.DoesNotExist:

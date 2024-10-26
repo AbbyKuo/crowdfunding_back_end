@@ -52,10 +52,8 @@ class PledgeDetailSerializer(serializers.ModelSerializer):
       read_only_fields = ["amount", "project"]
       
       def update(self, instance, validate_data):
-        # instance.amount = validate_data.get('amount', instance.amount)
         instance.comment = validate_data.get('comment', instance.comment)
         instance.anonymous = validate_data.get('anonymous', instance.anonymous)
-        # instance.project = validate_data.get('project', instance.project)
         instance.supporter = validate_data.get('supporter', instance.supporter)
         instance.save()
         return instance
