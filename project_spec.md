@@ -24,7 +24,7 @@ Your crowdfunding project must:
   - [x] A comment to go along with the pledge
 - [x] Implement suitable update/delete functionality, e.g. should a project owner be allowed to update a project description?
 - [x] Implement suitable permissions, e.g. who is allowed to delete a pledge?
-- [ ] Return the relevant status codes for both successful and unsuccessful requests to the API.
+- [x] Return the relevant status codes for both successful and unsuccessful requests to the API.
 - [x] Handle failed requests gracefully (e.g. you should have a custom 404 page rather than the default error page).
 - [x] Use Token Authentication, including an endpoint to obtain a token along with the current user's details.
 - [ ] Implement responsive design.
@@ -38,9 +38,9 @@ Note that while this is a crowdfunding website, actual money transactions are ou
 To submit, fill out [this Google form](https://forms.gle/34ymxgPhdT8YXDgF6), including a link to your Github repo. Your lead mentor will respond with any feedback they can offer, and you can approach the mentoring team if you would like help to make improvements based on this feedback!
 
 Please include the following in your readme doc:
-- [ ] A link to the deployed project.
-- [ ] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
-- [ ] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
-- [ ] A screenshot of Insomnia, demonstrating a token being returned.
-- [ ] Step by step instructions for how to register a new user and create a new project (i.e. endpoints and body data).
-- [ ] Your refined API specification and Database Schema.
+- [x] A link to the deployed project.
+- [x] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
+- [x] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
+- [x] A screenshot of Insomnia, demonstrating a token being returned.
+- [x] Step by step instructions for how to register a new user and create a new project (i.e. endpoints and body data).
+- [x] Your refined API specification and Database Schema.

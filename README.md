@@ -69,5 +69,19 @@ It can be helpful to keep the markdown preview open in VS Code so that you can s
 
 
 ### DB Schema
-![](./erd.drawio.png)
-```
+![DB schema](.imgs/erd.drawio.png)
+
+### Screenshots
+![A successful GET method](./imgs/get_user_detail.png)
+![A successful POST method](./imgs/create_a_project.png)
+![A successful token being returned](./imgs/token_return.png)
+
+#### How to register a new user and create a new project
+1. Create User
+   ![create user](./imgs/create_new_user.png)
+2. Sign in User
+   ![Sing in user to get a token](./imgs/get_user_token.png)
+3. Create Project 
+   ![json body for creating a project](./imgs/create_project_body.png)
+   ![Auth token for creating a project](./imgs/create_project_token.png)
+
