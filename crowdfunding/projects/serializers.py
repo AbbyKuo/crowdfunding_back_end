@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.apps import apps
+from .models import Project, Pledge
 
 class ProjectSerializer(serializers.ModelSerializer):
   owner = serializers.ReadOnlyField(source='owner.id')
@@ -11,9 +12,17 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 class PledgeSerializer(serializers.ModelSerializer):
   supporter = serializers.ReadOnlyField(source='supporter.id')
+  supporter_username = serializers.SerializerMethodField()
+
   class Meta:
       model = apps.get_model('projects.Pledge')
-      fields = '__all__'
+      fields = ['id', 'amount', 'comment', 'anonymous', 'project', 'supporter', 'supporter_username']
+      read_only_fields = ['supporter']
+
+  def get_supporter_username(self, obj):
+      if obj.anonymous:
+          return "Anonymous"
+      return obj.supporter.username if obj.supporter else None
 
   def to_representation(self, instance):
         # instance is a Pledge (printing out type(instance))
